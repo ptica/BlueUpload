@@ -1,14 +1,16 @@
 $(function () {
 	'use strict';
 	// MODULE: blueimp/jQuery-File-Upload
-	// Change this to the location of your server-side upload handler:
-	var url = '/upload/';
-	$('#fileupload').fileupload({
-		url: url,
+	$('input[data-provide=fileupload]').fileupload({
 		dataType: 'json',
 		done: function (e, data) {
 			$.each(data.result.files, function (index, file) {
-				$('<p/>').text(file.name).appendTo('#files');
+				if (file.type.match(/^image/)) {
+					$('.blueupload .thumbs').append(App.render['BlueUpload/image'](file));
+				} else {
+					$('.blueupload .thumbs').append(App.render['BlueUpload/file'](file));
+				}
+				console.log(file);
 			});
 		},
 		progressall: function (e, data) {
