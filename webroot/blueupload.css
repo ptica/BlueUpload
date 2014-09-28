@@ -1,15 +1,10 @@
 .blueupload .thumbnails {
 	margin: 25px -8px;
 }
-
-.blueupload	img {
+.blueupload	.img-thumbnail {
 	margin: 6px;
-}
-
-
-
-.blueupload .name {
 	position: relative;
+	min-width: 250px;
 }
 .blueupload [data-delete] {
 	font-size: 2.5em;
@@ -17,5 +12,13 @@
 	display: block;
 	position: absolute;
 	right: 2%;
-	top: 2%;
+	top: -5%;
+	display: none;
+	color: red;
+}
+.blueupload .thumb:hover [data-delete] {
+	display: block;
+}
+.blueupload .thumb {
+	float: left;
 }
