@@ -14,8 +14,9 @@ class BlueUploadSchema extends CakeSchema {
 		'size' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
 		'type' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
 		'url' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
-		'thumbnailUrl' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
-		'previewUrl' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
+		'thumbnailUrl' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
+		'previewUrl' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
+		'badgeUrl' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
 		'deleteUrl' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
 		'deleteType' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_czech_ci', 'charset' => 'utf8'),
 		'indexes' => array(
