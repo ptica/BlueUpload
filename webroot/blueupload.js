@@ -10,7 +10,6 @@ $(function () {
 				} else {
 					$('.blueupload .thumbnails').append(App.render['BlueUpload/file-edit'](file));
 				}
-				console.log(file);
 			});
 		},
 		progressall: function (e, data) {
@@ -24,15 +23,16 @@ $(function () {
 
 	$('.blueupload .thumbnails').on('click', '[data-delete]', function() {
 		// delete icon handler
-		var deleteUrl  = this.getAttribute('data-delete-url');
-		var deleteType = this.getAttribute('data-delete-type');
-		if (deleteUrl) {
-			$.ajax(deleteUrl, {type:deleteType}).done(function (data) {
-				console.log(data);
-			})
-			.fail(function () {
+		var $thumb = $(this).closest('.thumb');
+		var id = $thumb.find('[data-file-id]').data('file-id');
 
+		$thumb.animate({opacity:0}, 400, function() {
+			$(this).animate({width:'toggle'}, 400, function () {
+				$(this).find('.img-thumbnail').remove();
+				$(this).show();
 			});
-		}
+		});
+
+		$thumb.append(App.render['BlueUpload/item-delete']({id:id}));
 	});
 });

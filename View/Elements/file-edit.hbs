@@ -1,12 +1,12 @@
 <div class="thumb">
 	<div class="img-thumbnail">
-	{{#if error}}
-		<b>{{name}}</b>
-		<div><span class="label label-danger">{{i18n "Error"}}</span> {{i18n error}}</div>
-	{{else}}
-		<span data-delete>&times;</span>
-		<b><a href="{{url}}">{{name}}</a></b>
-		<input type="hidden" name="data[Upload][Upload][]" value="{{id}}" id="UploadUpload{{id}}">
-	{{/if}}
+		{{#if error}}
+			<b>{{name}}</b>
+			<div><span class="label label-danger">{{i18n "Error"}}</span> {{i18n error}}</div>
+		{{else}}
+			<span data-delete>&times;</span>
+			<b><a href="{{url}}" data-file-id="{{id}}">{{name}}</a></b>
+			<input type="hidden" name="data[Upload][Upload][]" value="{{id}}" id="UploadUpload{{id}}">
+		{{/if}}
 	</div>
 </div>

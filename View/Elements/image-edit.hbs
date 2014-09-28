@@ -5,7 +5,7 @@
 		<div><span class="label label-danger">{{i18n "Error"}}</span> {{i18n error}}</div>
 	{{else}}
 		<span data-delete>&times;</span>
-		<img src="{{thumbnailUrl}}" alt="{{name}}">
+		<img src="{{thumbnailUrl}}" alt="{{name}}" data-file-id="{{id}}">
 		<input type="hidden" name="data[Upload][Upload][]" value="{{id}}" id="UploadUpload{{id}}">
 	{{/if}}
 	</div>
