@@ -1,3 +1,10 @@
+.blueupload input[type="file"] {
+	width:98px;
+	height:34px;
+	left:0;
+	right: auto;
+}
+
 .blueupload .thumbnails {
 	margin: 25px -8px;
 }
