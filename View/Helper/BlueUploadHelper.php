@@ -61,7 +61,8 @@ class BlueUploadHelper extends Bs3FormHelper {
 
 			// add more button
 			$plus = $this->Html->tag('i', '', array('class'=>'glyphicon glyphicon-plus'));
-			$button_label = $this->Html->tag('span', __("Select files..."));
+			//$button_label = $this->Html->tag('span', __("Select files..."));
+			$button_label = $this->Html->tag('span', __("vybrat..."));
 			$button = $this->Html->tag('span', $plus . ' ' . $button_label . $input, array('class'=>'btn btn-primary fileinput-button'));
 			$element = $this->Html->div('col-sm-7 input-group', $button . $thumbnails);
 

@@ -12,6 +12,7 @@
 	margin: 6px;
 	position: relative;
 	min-width: 250px;
+	min-height: 55px;
 }
 .blueupload [data-delete] {
 	font-size: 2.5em;
