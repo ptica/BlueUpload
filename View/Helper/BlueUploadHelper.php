@@ -45,7 +45,7 @@ class BlueUploadHelper extends Bs3FormHelper {
 			$options['name'] = 'files[]';
 			$options['multiple'] = true;
 			$options['data-provide'] = 'fileupload';
-			$options['data-url'] = $upload_config['script_url'];
+			$options['data-url'] = Router::url($upload_config['script_url']);
 			$options['label'] = false;
 			$options['div'] = false;
 			$input = $this->CakeForm->input($fieldName, $options);

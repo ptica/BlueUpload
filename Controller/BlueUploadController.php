@@ -46,6 +46,10 @@ class BlueUploadController extends BlueUploadAppController {
 
 					unset($file->deleteUrl);
 					unset($file->deleteType);
+
+					// account for apps installed in subdir of webroot
+					$file->url = Router::url($file->url);
+					$file->thumbnailUrl = Router::url($file->thumbnailUrl);
 				}
 			}
 		} else if ($this->request->is(array('delete'))) {
