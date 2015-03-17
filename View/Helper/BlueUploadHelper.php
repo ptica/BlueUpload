@@ -1,6 +1,6 @@
 <?php
 /**
-* This helper outputs and file input element
+* This helper outputs a file input element
 *
 * @copyright Copyright (c) Jan Ptacek (https://twitter.com/ptica)
 * @link https://github.com/ptica
@@ -32,12 +32,15 @@ class BlueUploadHelper extends Bs3FormHelper {
 
 	public function input($fieldName, $options = array()) {
 		if (@$options['type'] == 'blueupload') {
-			// todo try to render the surrounding divs+classes from the $Bs3Form
+			// TODO try to render the surrounding divs+classes from the $Bs3Form
 			// so Bs3Form config is respected
 
 			// construct the html NOW per partest
 			// as without a dive into Bs3 the options do not cover the html I need now
-			$label = $this->Html->tag('label', $options['label'], array('class'=>'col-sm-2 control-label', 'for'=>'files[]'));
+			$label_options = $this->_initInputOptions($options);
+			$label_options['label']['for'] = 'upload';
+			$label = $this->_getLabel($fieldName, $label_options);
+			//$label = $this->Html->tag('label', $options['label'], array('class'=>'col-sm-2 control-label', 'for'=>'files[]'));
 
 			// render the input element
 			$upload_config = Configure::read('BlueUpload.options.'.$options["upload_config"]);
