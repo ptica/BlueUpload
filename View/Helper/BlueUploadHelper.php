@@ -60,7 +60,7 @@ class BlueUploadHelper extends Bs3FormHelper {
 				$carry .= $this->_View->Element($template, $item);
 				return $carry;
 			});
-			$thumbnails = $this->Html->div('thumbnails', $thumbnails);
+			$thumbnails = $this->Html->div('thumbnails sortables', $thumbnails);
 
 			// add more button
 			$plus = $this->Html->tag('i', '', array('class'=>'glyphicon glyphicon-plus'));

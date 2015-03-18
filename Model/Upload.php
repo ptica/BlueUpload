@@ -25,7 +25,7 @@ class Upload extends BlueUploadAppModel {
 				}
 			}
 			if (isset($val['Upload']['dir'])) {
-				$results[$key]['Upload']['thumbnailUrl'] = $val['Upload']['dir'] . DS . 'thumbnail' . DS . $val['Upload']['name'];
+				$results[$key]['Upload']['thumbnailUrl'] = $val['Upload']['dir'] . 'thumbnail' . DS . $val['Upload']['name'];
 			}
 		}
 
