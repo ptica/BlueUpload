@@ -1,5 +1,5 @@
 {
-	"name": "ptica/blue-upload",
+	"name": "Deploy",
 	"type": "cakephp-plugin",
 	"description": "CakePHP backend for BlueImp jquery file upload ",
 	"homepage": "http://github.com/ptica/BlueUpload",
