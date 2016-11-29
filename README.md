@@ -139,5 +139,5 @@ App::uses('BlueUploadListener', 'Lib/Event');
 
 // Attach listeners - on particular Models
 $BlueUploadModel = ClassRegistry::init('BlueUpload.Upload');
-$BlueUploadModel->getEventManager()->attanch(new BlueUploadListener());
+$BlueUploadModel->getEventManager()->attach(new BlueUploadListener());
 ```
