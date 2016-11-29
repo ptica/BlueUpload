@@ -4,7 +4,7 @@
 			<b>{{name}}</b>
 			<div><span class="label label-danger">{{i18n "Error"}}</span> {{i18n error}}</div>
 		{{else}}
-			<span data-delete>&times;</span>
+			<span data-delete data-delete-url="{{deleteUrl}}" data-delete-type="{{deleteType}}">&times;</span>
 			<b><a href="{{url}}" data-file-id="{{id}}">{{name}}</a></b>
 			<input type="hidden" name="data[Upload][Upload][]" value="{{id}}" id="UploadUpload{{id}}">
 		{{/if}}

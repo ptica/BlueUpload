@@ -23,6 +23,7 @@ $(function () {
 
 	$('.blueupload .thumbnails').on('click', '[data-delete]', function() {
 		// delete icon handler
+		var $blueupload = $(this).closest('.blueupload');
 		var $thumb = $(this).closest('.thumb');
 		var id = $thumb.find('[data-file-id]').data('file-id');
 
@@ -33,6 +34,18 @@ $(function () {
 			});
 		});
 
-		$thumb.append(App.render['BlueUpload/item-delete']({id:id}));
+		if ($blueupload.hasClass('immediate-delete')) {
+			// do http delete
+			var deleteUrl  = $(this).data('delete-url');
+			var deleteType = $(this).data('delete-type');
+			$.ajax({
+				url: deleteUrl,
+				type: deleteType,
+				success: function (data) {}
+			});
+		} else {
+			// render the form input signaling what to delete upon form submission
+			$thumb.append(App.render['BlueUpload/item-delete']({id:id}));
+		}
 	});
 });

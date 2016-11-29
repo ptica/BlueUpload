@@ -6,6 +6,19 @@ App::uses('AppController', 'Controller');
 class BlueUploadController extends BlueUploadAppController {
 	public $uses = array('BlueUpload.Upload');
 
+	public function list_by_type($config='default') {
+		if (empty($this->request->params['requested'])) {
+			throw new ForbiddenException();
+		}
+		return $this->Upload->find('all', array(
+			'conditions' => array(
+				'config' => $config,
+			),
+			'order' => 'Upload.id DESC',
+			'limit' => 10
+		));
+	}
+
 	public function upload($config='default') {
 		if (!$this->request->is(array('post', 'put', 'delete'))) {
 			die('Method not allowed');
@@ -29,7 +42,8 @@ class BlueUploadController extends BlueUploadAppController {
 						'type' => $file->type,
 						'url'  => $file->url,
 						'deleteUrl' => $file->deleteUrl,
-						'deleteType' => $file->deleteType
+						'deleteType' => $file->deleteType,
+						'config' => $config
 					);
 					// 'thumbnailUrl' => $file->thumbnailUrl,
 					// 'previewUrl'   => $file->previewUrl,
@@ -44,8 +58,9 @@ class BlueUploadController extends BlueUploadAppController {
 					$this->Upload->save($upload);
 					$file->id = $this->Upload->getLastInsertID();
 
-					unset($file->deleteUrl);
-					unset($file->deleteType);
+					// actually those are needed for .immediate-delete blueuploads
+					//unset($file->deleteUrl);
+					//unset($file->deleteType);
 
 					// account for apps installed in subdir of webroot
 					$file->url = Router::url($file->url);
@@ -58,7 +73,13 @@ class BlueUploadController extends BlueUploadAppController {
 			$content = $upload_handler->delete($print_response=false);
 
 			// delete from uploads table
-			foreach ($content['files'] as &$file) {
+			foreach ($content as $filename => $deleted) {
+				if ($deleted) {
+					$this->Upload->deleteAll(array(
+						'config' => $config,
+						'name' => $filename
+					));
+				}
 			}
 		}
 
