@@ -3,6 +3,7 @@
 	"type": "cakephp-plugin",
 	"description": "CakePHP backend for BlueImp jquery file upload ",
 	"homepage": "http://github.com/ptica/BlueUpload",
+	"version": "1.2.1",
 	"license": "MIT",
 	"require": {
 		"php": ">=5.3.0",
