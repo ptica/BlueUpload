@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEvent', 'Event');
+
 /**
 * Uploads Controller
 */
@@ -41,10 +43,12 @@ class BlueUploadController extends BlueUploadAppController {
 						'size' => $file->size,
 						'type' => $file->type,
 						'url'  => $file->url,
+						'dir'  => $options['upload_dir'],
 						'deleteUrl' => $file->deleteUrl,
 						'deleteType' => $file->deleteType,
 						'config' => $config
 					);
+
 					// 'thumbnailUrl' => $file->thumbnailUrl,
 					// 'previewUrl'   => $file->previewUrl,
 					//  ... etc
@@ -52,6 +56,17 @@ class BlueUploadController extends BlueUploadAppController {
 						if (!empty($version_name)) {
 							$upload[$version_name.'Url'] = $file->{$version_name.'Url'};
 						}
+					}
+
+					// invoke a custom event so app can mangle the data
+					$event = new CakeEvent('Model.BlueUpload.beforeSave', $this, array('upload' => $upload));
+					$this->Upload->getEventManager()->dispatch($event);
+					if ($event->isStopped()) {
+						continue;
+					}
+					// pickup mangled data
+					if (!empty($event->result['upload'])) {
+						$upload = $event->result['upload'];
 					}
 
 					$this->Upload->create();

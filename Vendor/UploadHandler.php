@@ -979,7 +979,7 @@ class UploadHandler
         return @getimagesize($file_path);
     }
 
-    protected function create_scaled_image($file_name, $version, $options) {
+    public function create_scaled_image($file_name, $version, $options) {
         if ($this->options['image_library'] === 2) {
             return $this->imagemagick_create_scaled_image($file_name, $version, $options);
         }
@@ -1102,7 +1102,7 @@ class UploadHandler
     protected function body($str) {
         echo $str;
     }
-    
+
     protected function header($str) {
         header($str);
     }
@@ -1265,19 +1265,17 @@ class UploadHandler
         if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
             return $this->delete($print_response);
         }
-        $upload = isset($_FILES[$this->options['param_name']]) ?
-            $_FILES[$this->options['param_name']] : null;
+        $upload = isset($_FILES[$this->options['param_name']]) ? $_FILES[$this->options['param_name']] : null;
         // Parse the Content-Disposition header, if available:
         $file_name = $this->get_server_var('HTTP_CONTENT_DISPOSITION') ?
-            rawurldecode(preg_replace(
-                '/(^[^"]+")|("$)/',
-                '',
-                $this->get_server_var('HTTP_CONTENT_DISPOSITION')
-            )) : null;
+                rawurldecode(preg_replace(
+                    '/(^[^"]+")|("$)/',
+                    '',
+                    $this->get_server_var('HTTP_CONTENT_DISPOSITION')
+                )) : null;
         // Parse the Content-Range header, which has the following form:
         // Content-Range: bytes 0-524287/2000000
-        $content_range = $this->get_server_var('HTTP_CONTENT_RANGE') ?
-            preg_split('/[^0-9]+/', $this->get_server_var('HTTP_CONTENT_RANGE')) : null;
+        $content_range = $this->get_server_var('HTTP_CONTENT_RANGE') ? preg_split('/[^0-9]+/', $this->get_server_var('HTTP_CONTENT_RANGE')) : null;
         $size =  $content_range ? $content_range[3] : null;
         $files = array();
         if ($upload && is_array($upload['tmp_name'])) {

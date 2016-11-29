@@ -24,7 +24,11 @@ class Upload extends BlueUploadAppModel {
 					$results[$key]['Upload'][$field] = Router::url($val['Upload'][$field]);
 				}
 			}
+			if (isset($val['Upload']['dir'])) {
+				$results[$key]['Upload']['thumbnailUrl'] = $val['Upload']['dir'] . 'thumbnail' . DS . $val['Upload']['name'];
+			}
 		}
+
 		return $results;
 	}
 }

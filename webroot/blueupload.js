@@ -18,7 +18,9 @@ $(function () {
 				'width', progress + '%'
 			);
 		}
-	}).prop('disabled', !$.support.fileInput)
+	})
+	// checking availability of fileInput
+	.prop('disabled', !$.support.fileInput)
 	.parent().addClass($.support.fileInput ? undefined : 'disabled');
 
 	$('.blueupload .thumbnails').on('click', '[data-delete]', function() {
